@@ -3,7 +3,8 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "</p>");
+    $("#articles").append("<p data-id=" + data[i]._id + ">" + "<a href=" + data[i].link + ">" + data[i].link + "</a></p>");
   }
 });
 
@@ -31,6 +32,7 @@ $(document).on("click", "p", function() {
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<button data-id='" + data._id + "' id='deletenote'>Delete Note</button");
 
       // If there's a note in the article
       if (data.note) {
@@ -70,3 +72,19 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
+
+$(document).on("click", "#deletenote", function() {
+  var thisId = $(this).attr("data-id");
+
+  $.ajax({
+    method: "DELETE",
+    url: "/articles/" + thisId,
+    data: {
+      title: $("#titleinput").empty(),
+      body: $("#bodyinput").empty()
+      .then(function(data) {
+        $("#notes").empty();
+      })
+    }
+  })
+})
