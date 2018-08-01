@@ -1,4 +1,9 @@
-      body { background-color: rgb(246, 208, 214) }
+      body { 
+        background-color: rgb(246, 208, 214);
+        /* background-image: url("https://www.foxtel.com.au/content/dam/foxtel/whats-on/sport/sports-nba-2017-nologo.jpg");  */
+        color: white;
+      }
+        
       #wrapper {
         width: 960px;
         margin-left: auto;
@@ -35,4 +40,5 @@
         font-size: 24pt;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-weight: bolder;
+        color: white;
       }
